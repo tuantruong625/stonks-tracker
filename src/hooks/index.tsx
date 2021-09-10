@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import protobuf from "protobufjs";
 
 export default function useStonkFeed() {
- const [current, setCurrent] = useState<protobuf.Message<{}> | null | any>()
+ const [stonk, setStonk] = useState<protobuf.Message<{}> | null | any>()
 
  useEffect(() => {
   const ws = new WebSocket('wss://streamer.finance.yahoo.com');
@@ -25,15 +25,15 @@ export default function useStonkFeed() {
 
    ws.onmessage = function incoming(message) {
     const next: protobuf.Message<{}> | undefined = Yaticker?.decode(new Buffer(message.data, 'base64'))
-    setCurrent(next)
+    setStonk(next)
    };
   })
 
  }, [])
 
- if (!current) {
+ if (!stonk) {
   return 'closing price'
  }
 
- return current
+ return stonk
 }

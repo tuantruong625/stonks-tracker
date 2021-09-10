@@ -25,6 +25,7 @@ export default function useStonkFeed() {
 
    ws.onmessage = function incoming(message) {
     const next: protobuf.Message<{}> | undefined = Yaticker?.decode(new Buffer(message.data, 'base64'))
+    console.log(next)
     setStonk(next)
    };
   })

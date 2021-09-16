@@ -71,7 +71,7 @@ function App() {
         <Tbody>
           <Tr>
             <Td>{symbol.id}</Td>
-            <Td>${toFixed(symbol.price, 2)}</Td>
+            <Td color={ !Math.sign(symbol.price) ? 'red.500' : 'green.500' }>${toFixed(symbol.price, 2)}</Td>
             <Td isNumeric>{toFixed(symbol.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(symbol.change, 2)}</Td>
           </Tr>

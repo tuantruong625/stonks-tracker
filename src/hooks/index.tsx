@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import protobuf from "protobufjs";
 
-export default function useStonkFeed() {
+export default function useStonkFeed(symbol = 'AMC') {
  const [stonk, setStonk] = useState<protobuf.Message<[]> | null | any>()
  const [watchList, setWatchList] = useState<protobuf.Message<[]> | null | any>()
 
@@ -16,7 +16,7 @@ export default function useStonkFeed() {
    ws.onopen = function open() {
     console.log('connected');
     ws.send(JSON.stringify({
-     subscribe: ['AMC']
+     subscribe: [symbol]
     }));
    };
 

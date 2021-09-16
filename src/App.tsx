@@ -1,7 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import useStonkFeed from './hooks';
 import { DateTime } from 'luxon'
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tfoot,
+  Tr,
+  Th,
+  Td,
+  TableCaption,
+  Container,
+  Text,
+  Box,
+  Flex,
+  Heading,
+  Spacer
+} from "@chakra-ui/react"
 
 function App() {
   const symbol = useStonkFeed()
@@ -33,17 +49,47 @@ function App() {
   }
 
   return (
-    <div className="mx-auto mt-10 max-w-4x flex flex-col justify-center items-center h-screen">
-      <div className="flex flex-col justify-center  border border-gray-100 shadow-md rounded-md p-4">
-        <h1 className="text-gray-600 text-xl font-medium">{symbol.id }</h1>
-        <p className="text-3xl pr-2 text-gray-700">${ toFixed(symbol.price, 2) }</p>
-        <div className="flex ">
-          <p className={ !Math.sign(symbol.change) ? 'text-green-500' : 'text-red-500'}>{ toFixed(symbol.change, 2) }</p>
-          <p className={!Math.sign(symbol.changePercent) ? 'text-green-500' : 'text-red-500'}>({toFixed(symbol.changePercent,2) }%)</p>
+    <Container>
+      <Flex align="baseline" mt={2}>
+        <Box p="2">
+          <Heading size="lg">Stonks Watchlist</Heading>
+        </Box>
+        <Spacer />
+        <Box>
+          <Text fontSize="md">{symbol.time && timestampToTimeWithSeconds(symbol.time)}</Text>
+        </Box>
+      </Flex>
+      <Table variant="striped" mt={5} border="1px" borderRadius="full" borderColor="gray.200">
+        <Thead>
+          <Tr>
+            <Th>Symbol</Th>
+            <Th>Price</Th>
+            <Th isNumeric>Change%</Th>
+            <Th isNumeric>Change</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          <Tr>
+            <Td>{symbol.id}</Td>
+            <Td>${toFixed(symbol.price, 2)}</Td>
+            <Td isNumeric>{toFixed(symbol.changePercent, 2)}%</Td>
+            <Td isNumeric>${toFixed(symbol.change, 2)}</Td>
+          </Tr>
+        </Tbody>
+      </Table>
+      {/* <div className="mx-auto mt-10 max-w-4x flex flex-col justify-center items-center h-screen">
+        <div className="flex flex-col justify-center  border border-gray-100 shadow-md rounded-md p-4">
+          <h1 className="text-gray-600 text-xl font-medium">{symbol.id}</h1>
+          <p className="text-3xl pr-2 text-gray-700">${toFixed(symbol.price, 2)}</p>
+          <div className="flex ">
+            <p className={!Math.sign(symbol.change) ? 'text-green-500' : 'text-red-500'}>{toFixed(symbol.change, 2)}</p>
+            <p className={!Math.sign(symbol.changePercent) ? 'text-green-500' : 'text-red-500'}>({toFixed(symbol.changePercent, 2)}%)</p>
+          </div>
+          <p className="text-gray-500">{symbol.time && timestampToTimeWithSeconds(symbol.time)}</p>
         </div>
-        <p className="text-gray-500">{symbol.time && timestampToTimeWithSeconds(symbol.time) }</p>
-      </div>
-    </div>
+      </div> */}
+    </Container>
+
   );
 }
 

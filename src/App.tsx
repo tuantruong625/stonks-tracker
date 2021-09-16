@@ -55,6 +55,10 @@ function App() {
     return DateTime.fromMillis(timestamp).toFormat('DDDD')
   }
 
+  function numberWithCommas(x: number) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }
+
   return (
     <Container>
       <Flex align="baseline" mt={2}>
@@ -82,28 +86,28 @@ function App() {
             <Td color={ !Math.sign(symbol.price) ? 'red.500' : 'green.500' }>${toFixed(symbol.price, 2)}</Td>
             <Td isNumeric>{toFixed(symbol.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(symbol.change, 2)}</Td>
-            <Td isNumeric>{symbol.dayVolume}</Td>
+            <Td isNumeric>{numberWithCommas(symbol.dayVolume)}</Td>
           </Tr>
           <Tr>
             <Td>{gme.id}</Td>
             <Td color={ !Math.sign(gme.price) ? 'red.500' : 'green.500' }>${toFixed(gme.price, 2)}</Td>
             <Td isNumeric>{toFixed(gme.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(gme.change, 2)}</Td>
-            <Td isNumeric>{gme.dayVolume}</Td>
+            <Td isNumeric>{numberWithCommas(gme.dayVolume)}</Td>
           </Tr>
           <Tr>
             <Td>{irnt.id}</Td>
             <Td color={ !Math.sign(irnt.price) ? 'red.500' : 'green.500' }>${toFixed(irnt.price, 2)}</Td>
             <Td isNumeric>{toFixed(irnt.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(irnt.change, 2)}</Td>
-            <Td isNumeric>{irnt.dayVolume}</Td>
+            <Td isNumeric>{numberWithCommas(irnt.dayVolume)}</Td>
           </Tr>
           <Tr>
             <Td>{prog.id}</Td>
             <Td color={ !Math.sign(prog.price) ? 'red.500' : 'green.500' }>${toFixed(prog.price, 2)}</Td>
             <Td isNumeric>{toFixed(prog.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(prog.change, 2)}</Td>
-            <Td isNumeric>{prog.dayVolume}</Td>
+            <Td isNumeric>{numberWithCommas(prog.dayVolume)}</Td>
           </Tr>
          
         </Tbody>

@@ -30,7 +30,8 @@ export default function useStonkFeed(symbol = 'AMC') {
    };
   })
 
- })
+ // eslint-disable-next-line react-hooks/exhaustive-deps
+ }, [])
 
  if (!stonk) {
   return 'closing price'

@@ -9,8 +9,6 @@ export function WatchList() {
  const gme = useStonkFeed('GME')
  const irnt = useStonkFeed('IRNT')
  const prog = useStonkFeed('PROG')
-
- console.log(!Math.sign(symbol.price))
  
  return (
   <Table variant="striped" mt={5} border="1px" borderRadius="full" borderColor="gray.200">

@@ -1,7 +1,7 @@
 import {
   Box, Container, Flex,
   Heading,
-  Spacer, Text
+  Spacer, Text, Input
 } from "@chakra-ui/react";
 import React from 'react';
 import './App.css';
@@ -23,6 +23,7 @@ function App() {
           <Text fontSize="md">{symbol.time && timestampToTimeWithSeconds(symbol.time)}</Text>
         </Box>
       </Flex>
+      <Input />
       <WatchList />
     </Container>
   );

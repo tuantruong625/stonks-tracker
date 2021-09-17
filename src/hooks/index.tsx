@@ -30,7 +30,7 @@ export default function useStonkFeed(symbol = 'AMC') {
    };
   })
 
- }, [stonk])
+ })
 
  if (!stonk) {
   return 'closing price'

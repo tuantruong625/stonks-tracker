@@ -9,6 +9,8 @@ export function WatchList() {
  const gme = useStonkFeed('GME')
  const irnt = useStonkFeed('IRNT')
  const prog = useStonkFeed('PROG')
+
+ console.log(!Math.sign(symbol.price))
  
  return (
   <Table variant="striped" mt={5} border="1px" borderRadius="full" borderColor="gray.200">
@@ -24,28 +26,28 @@ export function WatchList() {
         <Tbody>
           <Tr>
             <Td>{symbol.id}</Td>
-            <Td color={ !Math.sign(symbol.price) ? 'red.500' : 'green.500' }>${toFixed(symbol.price, 2)}</Td>
+            <Td color={ !Math.sign(symbol.price) ? 'green.500' : 'red.500' }>${toFixed(symbol.price, 2)}</Td>
             <Td isNumeric>{toFixed(symbol.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(symbol.change, 2)}</Td>
             <Td isNumeric>{numberWithCommas(symbol.dayVolume)}</Td>
           </Tr>
           <Tr>
             <Td>{gme.id}</Td>
-            <Td color={ !Math.sign(gme.price) ? 'red.500' : 'green.500' }>${toFixed(gme.price, 2)}</Td>
+            <Td color={ !Math.sign(gme.price) ? 'green.500' : 'red.500' }>${toFixed(gme.price, 2)}</Td>
             <Td isNumeric>{toFixed(gme.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(gme.change, 2)}</Td>
             <Td isNumeric>{numberWithCommas(gme.dayVolume)}</Td>
           </Tr>
           <Tr>
             <Td>{irnt.id}</Td>
-            <Td color={ !Math.sign(irnt.price) ? 'red.500' : 'green.500' }>${toFixed(irnt.price, 2)}</Td>
+            <Td color={ !Math.sign(irnt.price) ? 'green.500' : 'red.500' }>${toFixed(irnt.price, 2)}</Td>
             <Td isNumeric>{toFixed(irnt.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(irnt.change, 2)}</Td>
             <Td isNumeric>{numberWithCommas(irnt.dayVolume)}</Td>
           </Tr>
           <Tr>
             <Td>{prog.id}</Td>
-            <Td color={ !Math.sign(prog.price) ? 'red.500' : 'green.500' }>${toFixed(prog.price, 2)}</Td>
+            <Td color={ !Math.sign(prog.price) ? 'green.500' : 'red.500' }>${toFixed(prog.price, 2)}</Td>
             <Td isNumeric>{toFixed(prog.changePercent, 2)}%</Td>
             <Td isNumeric>${toFixed(prog.change, 2)}</Td>
             <Td isNumeric>{numberWithCommas(prog.dayVolume)}</Td>

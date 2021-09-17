@@ -9,6 +9,8 @@ describe('useStonkFeed', () => {
  })
 
  it('returns stonk if the market is open', () => {
-
+  const { result } = renderHook(() => useStonkFeed('GME'))
+  
+  console.log(result.current)
  })
 })

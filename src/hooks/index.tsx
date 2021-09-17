@@ -3,7 +3,7 @@ import protobuf from "protobufjs";
 
 export default function useStonkFeed(symbol = 'AMC') {
  const [stonk, setStonk] = useState<protobuf.Message<[]> | null | any>()
- const [watchList, setWatchList] = useState<protobuf.Message<[]> | null | any>()
+ // const [watchList, setWatchList] = useState<protobuf.Message<[]> | null | any>()
 
  useEffect(() => {
   const ws = new WebSocket('wss://streamer.finance.yahoo.com');
@@ -30,7 +30,7 @@ export default function useStonkFeed(symbol = 'AMC') {
    };
   })
 
- }, [])
+ }, [stonk])
 
  if (!stonk) {
   return 'closing price'

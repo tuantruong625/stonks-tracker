@@ -1,30 +1,31 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import protobuf from "protobufjs";
 
 export default function useStonkFeed(symbol = 'AMC') {
  const [stonk, setStonk] = useState<protobuf.Message<[]> | null | any>()
+ const ws = useRef(null)
  // const [watchList, setWatchList] = useState<protobuf.Message<[]> | null | any>()
 
  useEffect(() => {
-  const ws = new WebSocket('wss://streamer.finance.yahoo.com');
+  ws.current = new WebSocket('wss://streamer.finance.yahoo.com');
   protobuf.load('./YPricingData.proto', (error, root) => {
    if (error) {
     console.log(error);
    }
    const Yaticker = root?.lookupType('yaticker');
 
-   ws.onopen = function open() {
+   ws.current.onopen = function open() {
     console.log('connected');
-    ws.send(JSON.stringify({
+    ws.current.send(JSON.stringify({
      subscribe: [symbol]
     }));
    };
 
-   ws.onclose = function close() {
+   ws.current.onclose = function close() {
     console.log('disconnected');
    };
 
-   ws.onmessage = function incoming(message) {
+   ws.current.onmessage = function incoming(message: any) {
     const next: protobuf.Message<{}> | undefined = Yaticker?.decode(new Buffer(message.data, 'base64'))
     setStonk(next)
    };

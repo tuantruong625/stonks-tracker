@@ -4,7 +4,6 @@ import protobuf from "protobufjs";
 export default function useStonkFeed(symbol = 'AMC') {
  const [stonk, setStonk] = useState<protobuf.Message<[]> | null | any>()
  const ws = useRef(null)
- // const [watchList, setWatchList] = useState<protobuf.Message<[]> | null | any>()
 
  useEffect(() => {
   ws.current = new WebSocket('wss://streamer.finance.yahoo.com');
@@ -31,7 +30,7 @@ export default function useStonkFeed(symbol = 'AMC') {
    };
   })
 
- // eslint-disable-next-line react-hooks/exhaustive-deps
+  // eslint-disable-next-line react-hooks/exhaustive-deps
  }, [])
 
  if (!stonk) {

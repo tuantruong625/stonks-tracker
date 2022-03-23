@@ -1,9 +1,8 @@
 import {
-  Table, Tbody, Td, Th, Thead, Tr
+  Table, Tbody, Th, Thead, Tr
 } from "@chakra-ui/react"
 import useStonkFeed from "../hooks"
-import { toFixed, numberWithCommas } from "../utils"
-import { useState, useEffect } from 'react'
+
 import WatchItem from "./WatchItem"
 
 export function WatchList() {
